@@ -144,20 +144,33 @@ function editContact(firstName, lastName, property, newValue) {
         console.log("Contact Does Not Exist");
     }
 }
+
+function deleteContact(firstName, lastName) {
+    if (contactExists(firstName, lastName)) {
+        addressBookArray = addressBookArray.filter((contact) => contact.firstName != firstName && contact.lastName != lastName);
+        console.log(firstName + " " + lastName + "  Contact Deleted");
+    } else {
+        console.log("Contact Does Not Exist");
+    }
+}
+
 try {
-    addressBookArray.push(new Contact("Akash", "Ram", "DPM", "CBE", "TamilNadu", 656565, "91 9988776655", "akash@gmail.com"));
+    addressBookArray.push(new Contact("Akash", "Ram", "Gandhi Nagar", "Coimbatore", "TamilNadu", 656565, "91 9988776655", "Akash@gmail.com"));
 } catch (e) {
     console.error(e);
 }
 
 try {
-    addressBookArray.push(new Contact("Senthil", "Kumar","DPM", "CBE", 'TamilNadu', 638656, '91 8098757073', "sk@gmail.com"));
+    addressBookArray.push(new Contact("Senthil", "Kumar","KSK Nagar", "Coimbatore", 'TamilNadu', 638656, '91 8098757073', "sk@gmail.com"));
 } catch (e) {
     console.log(e);
 }
 console.log(addressBookArray);
 console.log("\nAfter Editing Contact")
-editContact("Akash", "Ram", "city", "DPM");
-editContact("Akash", "Ram", "state", "TamilNadu");
-editContact("Akash", "Ram", "address", "India");
+editContact("Akash", "Ram", "city", "Coimbatore");
+editContact("Akash", "Ram", "state", "TamilaNadu");
+editContact("Akash", "Ram", "address", "Gandhi Nagar");
+console.log(addressBookArray);
+
+deleteContact("Akash", "Ram");
 console.log(addressBookArray);
