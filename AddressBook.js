@@ -174,6 +174,7 @@ function countContacts(contactArray){
         
     }
 }
+
 function searchByCityOrState(contactArray,cityorstate){
     if(cityorstate == "Coimbatore"){
         console.log("Contact by city");
