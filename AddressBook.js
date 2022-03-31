@@ -165,7 +165,7 @@ function countContacts(contactArray){
     }
     else{
         try{
-            addressBookArray.push(new Contact(firstName,lastName,'KSK Nagar','Coimbatore','TamilNadu',638656,'91 8098757073','vishnu@gmail.com'));
+            addressBookArray.push(new Contact(firstName,lastName,'KK Nagar','Coimbatore','TamilNadu',666565,'91 9988776655','jeeva@gmail.com'));
             
             console.log("Contact is added. ");
         }catch(Exception){
@@ -175,31 +175,44 @@ function countContacts(contactArray){
     }
 }
 function searchByCityOrState(contactArray,cityorstate){
-    if(cityorstate == "Coimbatore"){
+    if(cityorstate == "Bangalore"){
         console.log("Contact by city");
         contactArray.filter(name => name.city == cityorstate).forEach(contact=>console.log(contact.toString()));
     }
-    if(cityorstate == "TamilNadu"){
+    if(cityorstate == "Karnataka"){
         console.log("Contacts by state");
         contactArray.filter(name => name.state == cityorstate).forEach(contact=>console.log(contact.toString()));
     }
 }
+
+function isPresentInState(contactArray,name,stateName){
+    console.log('View person contact by state');
+   let contact=contactArray.filter(a => a.state == stateName).find(b => b.firstName==name);
+   console.log(contact.toString());
+}
+
+function isPresentInCity(contactArray, name, cityName) {
+    console.log('View person contact by city');
+   let contact=contactArray.filter(a => a.city == cityName).find(b => b.firstName==name);
+   console.log(contact.toString());
+    
+}
 try {
-    addressBookArray.push(new Contact("Vikas", "Sri", "DPM", "CBE", "TamilNadu", 6565656, "91 9998887776", "vikas@gmail.com"));
+    addressBookArray.push(new Contact("Vikas", "Sri", "KK Nagar", "Coimbatore", "TamilNadu", 666565, "91 9876543210", "vikas@gmail.com"));
 } catch (e) {
     console.error(e);
 }
 
 try {
-    addressBookArray.push(new Contact("Senthil", "kumar","KSK Nagar", "Coimbatore", 'TamilNadu', 638656, '91 8098757073', "sk@gmail.com"));
+    addressBookArray.push(new Contact("Senthil", "Kumar","KSK Nagar", "Coimbatore", 'TamilNadu', 638656, '91 8098757073', "sk@gmail.com"));
 } catch (e) {
     console.log(e);
 }
 console.log(addressBookArray);
 console.log("\nAfter Editing Contact")
-editContact("Vikas", "Sri", "city", "Coimbatore");
-editContact("Vikas", "Sri", "state", "TamilNadu");
-editContact("Vikas", "Sri", "address", "KSK Nagar");
+editContact("Vikas", "Sri", "city", "Davangere");
+editContact("Vikas", "Sri", "state", "Karanataka");
+editContact("Vikas", "Sri", "address", "Vidyanagar");
 console.log(addressBookArray);
 
 deleteContact("Vikas", "Sri");
@@ -209,3 +222,5 @@ addContact(addressBookArray,"Jeeva", "Guna");
 console.log(addressBookArray);
 searchByCityOrState(addressBookArray,'Coimbatore');
 searchByCityOrState(addressBookArray,'TamilNadu');
+isPresentInState(addressBookArray,"Senthil","TamilNadu");
+isPresentInCity(addressBookArray,"Jeeva","Coimbatore");
