@@ -159,24 +159,41 @@ function countContacts(contactArray){
     console.log("Number of contacts is: "+count);
  }
 
+ function addContact(addressBookArray,firstName,lastName){
+    if(addressBookArray.find((contact)=>(contact.firstName+" "+contact.lastName)==(firstName+" "+lastName))){   
+        console.log("Given contact already present in addressbook.");
+    }
+    else{
+        try{
+            addressBookArray.push(new Contact(firstName,lastName,'leninnagar','Davangere','Karnataka',577004,'91 7561036987','kavyag@gmail.com'));
+            
+            console.log("Contact is added. ");
+        }catch(Exception){
+            console.log(Exception);
+        }
+        
+    }
+}
 try {
-    addressBookArray.push(new Contact("Vishnu", "Hasan", "KK Nagar", "Coimbatore", "TamilNadu", 665544, "91 9998887776", "vishnu@gmail.com"));
+    addressBookArray.push(new Contact("Vikas", "Sri", "KK Nagar", "Coimbatore", "TamilNadu", 666565, "91 9988776655", "vikas@gmail.com"));
 } catch (e) {
     console.error(e);
 }
 
 try {
-    addressBookArray.push(new Contact("Senthil", "Kumar","KSK Nagar", "Coimbatore", "TamilNadu", 638656, '91 8098757073', "sk@gmail.com"));
+    addressBookArray.push(new Contact("Senthil", "kumar","KSK Nagar", "Coimbatore", 'TamilNadu', 638656, '91 8098757075', "sk@gmail.com"));
 } catch (e) {
     console.log(e);
 }
 console.log(addressBookArray);
 console.log("\nAfter Editing Contact")
-editContact("Vishnu", "Hasan", "city", "Coimbatore");
-editContact("Vishnu", "Hasan", "state", "TamilNadu");
-editContact("Vishnu", "Hasan", "address", "KK Nagar");
+editContact("Vikas", "Sri", "city", "Coimbatore");
+editContact("Vikas", "Sri", "state", "TamilNadu");
+editContact("Vikas", "Sri", "address", "DPM");
 console.log(addressBookArray);
 
-deleteContact("Vishnu", "Hasan");
+deleteContact("Vikas", "Sri");
 console.log(addressBookArray);
 countContacts(addressBookArray);
+addContact(addressBookArray,"Jeeva", "Guna");
+console.log(addressBookArray);
