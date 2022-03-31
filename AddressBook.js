@@ -1,9 +1,9 @@
 const nameRegex = new RegExp ('^[A-Z]{1}[a-z]{3,}$');
-const addressRegex = RegExp('^[a-zA-Z0-9#,]{4,}$');
-const cityStateRegex = RegExp('^[a-zA-Z]{4,}$');
-const zipRegex = RegExp("^[0-9]{3}\\s{0,1}[0-9]{3}$");
-const phoneNumberRegex = RegExp('^\\d{2}(\\s{1}\\d{10})$');
-const emailRegex = RegExp("^[a-zA-Z]+[a-zA-Z0-9]*[-.+ _]?[a-zA-Z0-9]+[@]{1}[a-z0-9]+[.]{1}[a-z]+[.]?[a-z]+$");
+const addressRegex = new RegExp('^[a-zA-Z0-9#,]{4,}$');
+const cityStateRegex = new RegExp('^[a-zA-Z]{4,}$');
+const zipRegex = new RegExp("^[0-9]{3}\\s{0,1}[0-9]{3}$");
+const phoneNumberRegex = new RegExp('^\\d{2}(\\s{1}\\d{10})$');
+const emailRegex = new RegExp("^[a-zA-Z]+[a-zA-Z0-9]*[-.+ _]?[a-zA-Z0-9]+[@]{1}[a-z0-9]+[.]{1}[a-z]+[.]?[a-z]+$");
 
 class Contact {
 
@@ -165,7 +165,7 @@ function countContacts(contactArray){
     }
     else{
         try{
-            addressBookArray.push(new Contact(firstName,lastName,'AN Nagar','Coimbatore','TamilNadu',660002,'91 9921036987','praveen@gmail.com'));
+            addressBookArray.push(new Contact(firstName,lastName,'Gandhi Nagar','Coimbatore','TamilNadu',667004,'91 8337036987','jeeva@gmail.com'));
             
             console.log("Contact is added. ");
         }catch(Exception){
@@ -209,23 +209,41 @@ function getCountByState(contactArray, stateName) {
 }
 
 function sortedContacts(contactArray) {
-        console.log('\nSorted contacts');
+        console.log('\nSorted contacts by name');
         console.log(contactArray.sort((a,b)=>a.firstName.localeCompare(b.firstName)));
 }
+
+function sortedContactsbyCity(contactArray) {
+    console.log('\nSorted contacts by city');
+    console.log(contactArray.sort((a,b)=>a.city.localeCompare(b.city)));
+}
+
+function sortedContactsByState(contactArray) {
+    console.log('\nSorted contacts by state');
+    console.log(contactArray.sort((a,b)=>a.state.localeCompare(b.state)));
+}
+
+function sortedContactsByZip(contactArray) {
+    console.log('\nSorted contacts by zip');
+    contactArray.sort(function (a, b) { return a.zip - b.zip });
+    contactArray.forEach(contact => console.log(contact.toString()));
+}
 try {
-    addressBookArray.push(new Contact("Vikas", "Sri", "KK Nagar", "Coimbatore", "TamilNadu", 577004, "91 7896543210", "nayu@gmail.com"));
+    addressBookArray.push(new Contact("Vikas", "Sri", "KK Nagar", "Coimbatore", "TamilNadu", 666004, "91 8764755210", "vikas@gmail.com"));
+    addressBookArray.push(new Contact("Kannan", "thanga", "KP Nagar", "Coimbatore", "TamilNadu", 657004, "91 6998876210", "kannan@gmail.com"));
+
 } catch (e) {
     console.error(e);
 }
 
 try {
-    addressBookArray.push(new Contact("Senthil", "Kumar","KSK Nagar", "Coimbatore", 'TamilNadu', 577004, '91 6544563210', "priya@gmail.com"));
+    addressBookArray.push(new Contact("Senthil", "Kumar","KSK Nagar", "Coimbatore", 'TamilNadu', 638656, '91 8098757073', "sk@gmail.com"));
 } catch (e) {
     console.log(e);
 }
 console.log(addressBookArray);
 console.log("\nAfter Editing Contact")
-editContact("Vikas", "Sri", "city", "Cimbatore");
+editContact("Vikas", "Sri", "city", "Coimbatore");
 editContact("Vikas", "Sri", "state", "TamilNadu");
 editContact("Vikas", "Sri", "address", "KK Nagar");
 console.log(addressBookArray);
@@ -237,8 +255,11 @@ addContact(addressBookArray,"Jeeva", "Guna");
 console.log(addressBookArray);
 searchByCityOrState(addressBookArray,'Coimbatore');
 searchByCityOrState(addressBookArray,'TamilNadu');
-isPresentInState(addressBookArray,"Priya","TamilNadu");
+isPresentInState(addressBookArray,"Senthil","TamilNadu");
 isPresentInCity(addressBookArray,"Jeeva","Coimbatore");
 getCountByCity(addressBookArray, "Coimbatore");
 getCountByState(addressBookArray, "TamilNadu");
 sortedContacts(addressBookArray);
+sortedContactsbyCity(addressBookArray);
+sortedContactsByState(addressBookArray);
+sortedContactsByZip(addressBookArray);
